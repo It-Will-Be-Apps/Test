@@ -1,0 +1,17 @@
+# This workflow automatically adds opened issues to To do column of the project defined by the PROJECT_NAME secret
+name: Move opened issues to the appropriate project
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  move-issue-to-project:
+    name: Move issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: alex-page/github-project-automation-plus@latest
+        with: 
+          project: ${{ secrets.PROJECT_NAME }}
+          column: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
